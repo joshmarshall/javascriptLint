@@ -98,13 +98,10 @@ function unreferenced_identifier() {
         }
     }
 
-    (function(_, __, foo) {
-      // it should ignore the variables _ and __
-      foo.call();
+    (function(_) { /*warning:unreferenced_ignore_argument*/
     })();
 
-    (function(_, __, foo) { /*warning:unreferenced_argument*/
-      // it should ignore the variables _ and __
+    (function(__) { /*warning:unreferenced_ignore_argument*/
     })();
 
     return get_callback(42);

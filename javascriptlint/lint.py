@@ -551,9 +551,10 @@ def _lint_script_parts(script_parts, script_cache, lint_error, conf, import_call
         if ref_scope != scope:
             type_ = ref_scope.get_identifier_type(name)
             if type_ == 'arg':
+                error = 'unreferenced_argument'
                 if name.replace('_', '') == '':
-                    continue
-                report_lint(node, 'unreferenced_argument', name=name)
+                    error = 'unreferenced_ignore_argument'
+                report_lint(node, error, name=name)
             elif type_ == 'function':
                 report_lint(node, 'unreferenced_function', name=name)
             elif type_ == 'var':

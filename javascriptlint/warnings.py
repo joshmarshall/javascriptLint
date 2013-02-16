@@ -76,6 +76,8 @@ warnings = {
     'redeclared_var': 'redeclaration of {name}',
     'undeclared_identifier': 'undeclared identifier: {name}',
     'unreferenced_argument': 'argument declared but never referenced: {name}',
+    'unreferenced_ignore_argument': 'argument declared but never '
+        'referenced: {name} (this argument can be ignored in config)',
     'unreferenced_function': 'function is declared but never referenced: {name}',
     'unreferenced_variable': 'variable is declared but never referenced: {name}',
     'jsl_cc_not_understood': 'couldn\'t understand control comment using /*jsl:keyword*/ syntax',
