@@ -1,0 +1,6 @@
+build/
+.svn
+*.pyc
+*.swp
+*.swo
+
