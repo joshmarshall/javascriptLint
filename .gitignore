@@ -1,4 +1,5 @@
 build/
+spidermonkey/src/*_All_OPT.OBJ
 .svn
 *.pyc
 *.swp

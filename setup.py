@@ -3,22 +3,17 @@
 from distutils.core import setup, Extension
 import distutils.command.build
 import distutils.command.clean
+import distutils.spawn
 import os
 import subprocess
-import sys
 
 class _BuildError(Exception):
     pass
 
 def _getrevnum():
-    path = os.path.dirname(os.path.abspath(__file__))
-    p = subprocess.Popen(['svnversion', path], stdin=subprocess.PIPE,
-                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = p.communicate()
-    if p.returncode != 0:
-        raise _BuildError, 'Error running svnversion: %s' % stderr
-    version = stdout.strip().rstrip('M')
-    return int(version)
+    with open('VERSION') as fp:
+        version = fp.read()
+    return version
 
 def _runmakefiles(distutils_dir, build_opt=1, target=None):
     args = ['BUILD_OPT=%i' % build_opt]
@@ -77,12 +72,12 @@ if __name__ == '__main__':
     args = {}
     args.update(
         name = 'javascriptlint',
-        version = '0.0.0.%i' % _getrevnum(),
+        version = "%s" % _getrevnum(),
         author = 'Matthias Miller',
         author_email = 'info@javascriptlint.com',
         url = 'http://www.javascriptlint.com/',
         cmdclass = cmdclass,
-        description = 'JavaScript Lint (pyjsl beta r%i)' % _getrevnum(),
+        description = 'JavaScript Lint (pyjsl beta r%s)' % _getrevnum(),
         ext_modules = [pyspidermonkey],
         packages = ['javascriptlint'],
         scripts = ['jsl']
